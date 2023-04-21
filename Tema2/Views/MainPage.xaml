@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Tema2.Models"
+             x:Class="Tema2.Views.MainPage">
+
+    <Grid RowDefinitions="*,auto,auto">
+        <CollectionView Margin="12,0"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding task}"
+                        ItemsSource="{Binding tasks}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="1"
+                                 HorizontalItemSpacing="10"
+                                 VerticalItemSpacing="3" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:TaskToDo">
+                    <Border StrokeShape="RoundRectangle 20">
+                        <Grid ColumnDefinitions="auto, *"
+                              RowDefinitions="*,*"
+                              ColumnSpacing="12">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding Content}"
+                                   HeightRequest="100"
+                                   WidthRequest="100" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <Button Grid.Row="1"
+                Command="{Binding GoToBasicNavigationCommand}"
+                Text="Refresh"
+                Margin="4,4"
+                BackgroundColor="AntiqueWhite"
+                TextColor="Black"/>
+
+        <Grid Grid.Row="2"
+              ColumnDefinitions="*,auto"
+              BackgroundColor="Cyan">
+            <Entry Text="{Binding ToSaveOnDB.Name}"
+                   HorizontalOptions="FillAndExpand" />
+            <Button Grid.Column="1"
+                    Text="Save"
+                    Command="{Binding SaveOnDbCommand}" />
+        </Grid>
+    </Grid>
+    <!--<ScrollView>
+          <VerticalStackLayout
+            x:Name="FirstStackLayout" 
+            BackgroundColor="Grey">
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="End">
+                <Label>Add</Label>
+            </StackLayout>
+            
+            <Border Stroke="#2a2a2a"
+                        StrokeShape="RoundRectangle 30,30,30,30"
+                        StrokeLineCap="Round"
+                        Background="#2a2a2a"
+                        Padding="16,8"
+                        HorizontalOptions="Center">
+                <Label TextColor="#bababa" 
+                            Text="ToDo Organiser" 
+                            FontFamily="spotm" 
+                            FontSize="24" />
+            </Border>
+
+            --><!-- What The hack--><!--
+            <Line
+                    BackgroundColor="Grey"
+                    WidthRequest="1000"
+                    HeightRequest="5"
+                ></Line>
+            <HorizontalStackLayout>
+                <CheckBox
+                        x:Name="TODOelement"
+                        IsChecked="False"
+                        WidthRequest="100"
+                        HeightRequest="100"/>
+                <Label
+                    x:Name="Label"
+                    FontSize="Large"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center">Hat, Johnutule</Label>
+            </HorizontalStackLayout>
+
+            --><!--<Border Stroke="#2a2a2a"
+                        StrokeShape="RoundRectangle 30,30,30,30"
+                        StrokeLineCap="Round"
+                    Background="#2a2a2a"
+                    Padding="16,8"
+                    HorizontalOptions="Center">
+                    <Label TextColor="#bababa" 
+                            Text="Podcast &amp; Shows" 
+                            FontFamily="spotm" 
+                            FontSize="14" />
+                </Border>-->
+
+
+            <!--<Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="500" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+                    <VerticalStackLayout>
+
+                        <CollectionView Margin="19">
+                            <CollectionView.ItemsSource>
+                                <x:Array Type="{x:Type model:Songs}">
+                                    <model:Songs Name="Liked Songs"
+                                        ArtistName=""
+                                        Image="albumliked.jpg"/>
+                                    <model:Songs Name="Blond"
+                                        ArtistName="Frank Ocean"
+                                        Image="albumfrank.jpg"/>
+                                    <model:Songs Name="Rap Songs"
+                                        ArtistName=""
+                                        Image="albumr.png"/>
+                                    <model:Songs Name="Daily Mix 1"
+                                        ArtistName=""
+                                        Image="albumdaily.jpg"/>
+                                    <model:Songs Name="Discover Weekly"
+                                        ArtistName=""
+                                        Image="albumdiscover.jpg"/>
+                                    <model:Songs Name="ASTROWORLD"
+                                        ArtistName="Travis Scoot"
+                                        Image="albumastro.jpg"/>
+                                </x:Array>
+                            </CollectionView.ItemsSource>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="auto, *"
+                                        RowDefinitions="*, *">
+                                        <Frame Grid.ColumnSpan="3" 
+                                        Grid.RowSpan="2" 
+                                        BackgroundColor="#2a2a2a"
+                                        BorderColor="Black"
+                                        Opacity="1"  
+                                        Margin="-1"/>
+                                        <Image Grid.RowSpan="2"
+                                        Source="{Binding Image}" 
+                                        HeightRequest="60"
+                                        WidthRequest="60">
+                                            <Image.Clip>
+                                                <EllipseGeometry RadiusX="50"
+                                            RadiusY="45"
+                                            Center="40,30" />
+                                            </Image.Clip>
+                                        </Image>
+                                        <Label Grid.Column="1"
+                                        VerticalTextAlignment="Center"
+                                        Grid.RowSpan="2"
+                                        Margin="10"
+                                        FontFamily="spotm"
+                                        TextColor="#edeaeb"
+                                        Text="{Binding Name}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+                        </CollectionView>
+
+                        <Grid Margin="20, 0, 0, 0"
+                            ColumnSpacing="10"
+                            RowSpacing="-5"
+                            ColumnDefinitions="auto, *"
+                            RowDefinitions="*, 2*">
+                            <Image Grid.RowSpan="2" 
+                                Source="migos.jpg"
+                                HeightRequest="60"
+                                WidthRequest="60">
+                                <Image.Clip>
+                                    <EllipseGeometry RadiusX="30"
+                                RadiusY="30"
+                                Center="30,30" />
+                                </Image.Clip>
+                            </Image>
+                            <Label Grid.Column="1" Grid.Row="0" Text="MORE LIKE" FontSize="11" FontFamily="spotm" TextColor="Orange"/>
+                            <Label Grid.Column="1" Grid.Row="1" Text="The Migos" FontSize="25" FontFamily="spotm" TextColor="Orange"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid Grid.Row="1"
+                    Margin="11">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Padding="220, 55" Opacity="0"/>
+                    <Border Grid.Row="1" Opacity="0"/>
+                    <Button Grid.Row="2" 
+                            BackgroundColor="#444444"
+                            BorderColor="#444444"  
+                            Clicked="NextPage"></Button>
+                    <Grid Grid.Row="3" Margin="0,0,0, 0" >
+                        <Grid RowDefinitions="*, *" ColumnDefinitions="*, *, 30, 30, 30">
+                            <Image Grid.RowSpan="2" Margin="-80, 0, 0, 0"
+                                        Source="albumkeem.jpeg"
+                                        HeightRequest="55"
+                                        WidthRequest="45" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="trademark usa" TextColor="White" FontFamily="spotm" Margin="-80, 12, 0, 0"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="Baby Keem" TextColor="Purple" FontFamily="spotm" Margin="-80, 0, 0, 0"/>
+                            <Label Grid.RowSpan="2" Text="computer" FontFamily="FAS" TextColor="#b8b8b8" Grid.Column="2" FontSize="22" Margin="-30, 18,0, 0" />
+                            <Label Grid.RowSpan="2" Text="heart" FontFamily="FAR" TextColor="#fbfbfb" Grid.Column="3" FontSize="22" Margin="-18, 18,0, 0" />
+                            <Label Grid.RowSpan="2" Text="pause" FontFamily="FAS" TextColor="#fbfbfb" Grid.Column="4" FontSize="22" Margin="-10, 18,0, 0" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>--><!--
+            <StackLayout
+                
+                BackgroundColor="Purple" 
+                Orientation="Horizontal" 
+                VerticalOptions="End"
+                WidthRequest="1000"
+                HeightRequest="10">
+                <Button
+                    x:Name="AddActionTODO"
+                    Text="Add"
+                    FontSize="18"
+                    FontFamily="Arial">
+                </Button>
+            </StackLayout>
+            
+        </VerticalStackLayout>
+    </ScrollView>-->
+</ContentPage>
